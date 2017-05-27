@@ -17,7 +17,8 @@ import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
-import com.example.peterhu.myapplication.BaseRecyclerView.LFRecyclerViewAdapter;
+
+import com.huterpu.baserecyclerview.LFRecyclerViewAdapter;
 
 
 /**

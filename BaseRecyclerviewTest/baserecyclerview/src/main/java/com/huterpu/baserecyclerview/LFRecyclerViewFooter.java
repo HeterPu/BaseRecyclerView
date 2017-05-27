@@ -9,7 +9,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.peterhu.myapplication.R;
 
 /**
  * Created by limxing on 16/7/23.

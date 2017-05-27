@@ -6,9 +6,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.util.AttributeSet;
 import android.widget.ImageView;
-
-import com.example.peterhu.myapplication.R;
-
 import java.lang.ref.SoftReference;
 
 /**
