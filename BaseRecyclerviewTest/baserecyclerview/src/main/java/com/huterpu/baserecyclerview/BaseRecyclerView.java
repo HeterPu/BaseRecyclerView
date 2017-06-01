@@ -2,6 +2,7 @@ package com.huterpu.baserecyclerview;
 
 import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -194,6 +195,9 @@ public class BaseRecyclerView extends RecyclerView {
         if (mPullRefreshing) {
             if (isSuccess) {
                 recyclerViewHeader.setState(LFRecyclerViewHeader.STATE_SUCCESS);
+                if (isLoadMore){
+                    recyclerViewFooter.setState(LFRecyclerViewFooter.STATE_NORMAL);
+                }
             } else {
                 recyclerViewHeader.setState(LFRecyclerViewHeader.STATE_FRESH_FAILT);
             }
@@ -217,12 +221,16 @@ public class BaseRecyclerView extends RecyclerView {
         int height = recyclerViewFooter.getBottomMargin() + (int) delta;
         if (isLoadMore) {
             if (height > PULL_LOAD_MORE_DELTA) {
-                recyclerViewFooter.setState(LFRecyclerViewFooter.STATE_READY);
-                mPullLoading = true;
+                if (recyclerViewFooter.getmState() != LFRecyclerViewFooter.STATE_LOADOVER) {
+                    recyclerViewFooter.setState(LFRecyclerViewFooter.STATE_READY);
+                    mPullLoading = true;
+                }
             } else {
-                recyclerViewFooter.setState(LFRecyclerViewFooter.STATE_NORMAL);
-                mPullLoading = false;
-                mPullLoad = false;
+                if (recyclerViewFooter.getmState() != LFRecyclerViewFooter.STATE_LOADOVER) {
+                    recyclerViewFooter.setState(LFRecyclerViewFooter.STATE_NORMAL);
+                    mPullLoading = false;
+                    mPullLoad = false;
+                }
             }
         }
         recyclerViewFooter.setBottomMargin(height);
@@ -280,9 +288,11 @@ public class BaseRecyclerView extends RecyclerView {
                 if (isLoadMore && mPullLoading && layoutManager.findLastVisibleItemPosition() == lfAdapter.getItemCount() - 1
                         && recyclerViewFooter.getBottomMargin() > PULL_LOAD_MORE_DELTA
                         ) {
-                    recyclerViewFooter.setState(LFRecyclerViewFooter.STATE_LOADING);
-                    mPullLoad = true;
-                    startLoadMore();
+                    if (recyclerViewFooter.getmState() != LFRecyclerViewFooter.STATE_LOADOVER) {
+                        recyclerViewFooter.setState(LFRecyclerViewFooter.STATE_LOADING);
+                        mPullLoad = true;
+                        startLoadMore();
+                    }
                 }
                 resetHeaderHeight();
                 resetFooterHeight();
@@ -309,6 +319,16 @@ public class BaseRecyclerView extends RecyclerView {
             mPullLoad = false;
             mPullLoading = false;
             recyclerViewFooter.setState(LFRecyclerViewFooter.STATE_NORMAL);
+            resetFooterHeight();
+        }
+    }
+
+
+    public void stopLoadAndNoMoreData(){
+        if (mPullLoading) {
+            mPullLoad = false;
+            mPullLoading = false;
+            recyclerViewFooter.setState(LFRecyclerViewFooter.STATE_LOADOVER);
             resetFooterHeight();
         }
     }
@@ -392,6 +412,16 @@ public class BaseRecyclerView extends RecyclerView {
     }
 
 
+    /**
+     *
+     * 设置视图方向和反转，默认为垂直方向，没有反向
+    * */
+    public void setOrientationAndReverse(int orientaion,boolean reverse){
+        layoutManager.setOrientation(orientaion);
+        layoutManager.setReverseLayout(reverse);
+    }
+
+
     public void setLoadMore(boolean b) {
         this.isLoadMore = b;
         if (!isLoadMore) {
@@ -445,9 +475,11 @@ public class BaseRecyclerView extends RecyclerView {
                 && num > 0 && adapter.getItemCount() > num
                 && !mPullLoading) {
 
-            currentLastNum = layoutManager.findLastVisibleItemPosition();
-            mPullLoading = true;
-            startLoadMore();
+           if(recyclerViewFooter.getmState() != LFRecyclerViewFooter.STATE_LOADOVER){
+               currentLastNum = layoutManager.findLastVisibleItemPosition();
+               mPullLoading = true;
+               startLoadMore();
+           }
         }
         if (scrollerListener != null) {
             scrollerListener.onRecyclerViewScrollChange(view, i, i1);
@@ -504,6 +536,7 @@ public class BaseRecyclerView extends RecyclerView {
         recyclerViewHeader.getmHintTextView().setText(header);
     }
 
+
     /**
      * 设置是否没有数据时显示底部提示
      */
@@ -517,11 +550,13 @@ public class BaseRecyclerView extends RecyclerView {
     @Override
     public void requestLayout() {
         super.requestLayout();
-        if (recyclerViewFooter == null || lfAdapter == null || !isNoDateShow) {
+        if (recyclerViewFooter == null || lfAdapter == null) {
             return;
         }
+        int aa = lfAdapter.getItemCount();
+        int bb = lfAdapter.getHFCount();
         boolean b = lfAdapter.getItemCount() <= (lfAdapter.getHFCount());
-        recyclerViewFooter.setNoneDataState(b);
+        recyclerViewFooter.setNoneDataState(isNoDateShow);
         if (b) {
             recyclerViewFooter.hide();
         } else {

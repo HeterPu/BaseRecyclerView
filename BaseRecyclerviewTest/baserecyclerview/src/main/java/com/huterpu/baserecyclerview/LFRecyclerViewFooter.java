@@ -5,6 +5,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -20,6 +21,7 @@ public class LFRecyclerViewFooter extends LinearLayout {
     public final static int STATE_NORMAL = 0;
     public final static int STATE_READY = 1;
     public final static int STATE_LOADING = 2;
+    public final static int STATE_LOADOVER = 3;
 
     private Context mContext;
     private int mState;
@@ -54,7 +56,12 @@ public class LFRecyclerViewFooter extends LinearLayout {
             mHintView.setText(R.string.lfrecyclerview_footer_hint_ready);
         } else if (state == STATE_LOADING) {
             mProgressBar.setVisibility(View.VISIBLE);
-        } else {
+        } else if (state == STATE_LOADOVER) {
+            mHintView.setVisibility(View.VISIBLE);
+            mHintView.setText(R.string.lfrecyclerview_footer_hint_load_over);
+        }
+        else
+        {
             mHintView.setVisibility(View.VISIBLE);
             mHintView.setText(R.string.lfrecyclerview_footer_hint_normal);
         }
@@ -134,4 +141,6 @@ public class LFRecyclerViewFooter extends LinearLayout {
         }
 
     }
+
+
 }

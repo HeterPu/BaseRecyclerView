@@ -105,7 +105,7 @@ public class LFRecyclerViewAdapter extends RecyclerView.Adapter {
     }
 
     public int getHFCount() {
-        return getheaderViewCount()+ mBottomCount;
+        return getheaderViewCount()+ getFooterViewCount();
     }
 
 

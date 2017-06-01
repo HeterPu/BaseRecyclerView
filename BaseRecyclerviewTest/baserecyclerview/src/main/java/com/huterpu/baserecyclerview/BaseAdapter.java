@@ -43,6 +43,7 @@ import java.util.List;
         }
     }
 
+
   public   abstract void CellForItem(ViewGroup containerView,int position);
   public   abstract ViewGroup getPrototypeCell(ViewGroup parent,int viewType);
 }
