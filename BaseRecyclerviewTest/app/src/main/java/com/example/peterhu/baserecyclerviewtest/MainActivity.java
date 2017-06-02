@@ -10,6 +10,7 @@ import android.widget.Toast;
 import android.os.Handler;
 
 import com.huterpu.baserecyclerview.BaseRecyclerView;
+import com.huterpu.baserecyclerview.FlexibleDividerDecoration.HorizontalDividerItemDecoration;
 import com.huterpu.baserecyclerview.OnItemClickListener;
 
 import java.util.ArrayList;
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
 //            recycleview.addItemDecoration(new );
 //        recycleview.addItemDecoration(new HorizontalDividerItemDecoration().Builder);
 
-//        recycleview.addItemDecoration(new VerticalDividerItemDecoration.Builder(this).size(40).color(Color.GREEN).build());
+        recycleview.addItemDecoration(new HorizontalDividerItemDecoration.Builder(this).size(40).color(Color.GREEN).build());
 //        recycleview.addItemDecoration(new GridSpacingItemDecoration(spanCount,spacing,includeEdge));
 
 //        GridLayoutManager manager = new GridLayoutManager(this);
