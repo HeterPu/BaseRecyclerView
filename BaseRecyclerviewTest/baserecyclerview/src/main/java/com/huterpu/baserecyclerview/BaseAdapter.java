@@ -14,6 +14,7 @@ import java.util.List;
   public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.MasonryView> {
 
    public final List<T> list;
+   public  BaseRecyclerView mContainerView;
 
    public  BaseAdapter(List<T> list) {
         this.list=list;
@@ -21,13 +22,14 @@ import java.util.List;
 
     @Override
     public MasonryView onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = getPrototypeCell(parent,viewType);
+        this.mContainerView = (BaseRecyclerView)parent;
+        View view = getPrototypeCell(mContainerView,viewType);
         return new MasonryView(view);
     }
 
     @Override
     public void onBindViewHolder(MasonryView holder, int position) {
-          CellForItem(holder.container,position);
+          CellForItem(mContainerView,holder.container,position);
     }
 
     @Override
@@ -44,8 +46,8 @@ import java.util.List;
     }
 
 
-  public   abstract void CellForItem(ViewGroup containerView,int position);
-  public   abstract ViewGroup getPrototypeCell(ViewGroup parent,int viewType);
+  public   abstract void CellForItem(BaseRecyclerView parent,ViewGroup container, int position);
+  public   abstract ViewGroup getPrototypeCell(BaseRecyclerView parent,int viewType);
 }
 
 
