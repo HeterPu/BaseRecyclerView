@@ -44,7 +44,7 @@ public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
             if (spanCount == 1) {
                 int headerCount = adapter.getheaderViewCount();
                 int footerCount = adapter.getFooterViewCount();
-                if (mPadding != null)
+                if ((mPadding != null)&&((position >= headerCount) && (position <= adapter.getItemCount() - footerCount)))
                 {
                     outRect.left = mPadding.left;
                     outRect.right = mPadding.right;
@@ -196,12 +196,12 @@ public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
                 int headerCount = adapter.getheaderViewCount();
                 int footerCount = adapter.getFooterViewCount();
 
-                if (mPadding != null)
+                if (mPadding != null&&((position >= headerCount) && (position <= adapter.getItemCount() - footerCount)))
                 {
                     outRect.top = mPadding.top;
                     outRect.bottom = mPadding.bottom;
                 }
-                
+
                 if ((position >= headerCount + 1) && (position < adapter.getItemCount() - footerCount)) {
                     if(!reverseLayout) {
                         outRect.left = spacing;
