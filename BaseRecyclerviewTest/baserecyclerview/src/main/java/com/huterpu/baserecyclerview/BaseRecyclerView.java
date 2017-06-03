@@ -41,11 +41,11 @@ public class BaseRecyclerView extends RecyclerView {
     private int mScrollBack;
     private final static int SCROLLBACK_HEADER = 4;
     private final static int SCROLLBACK_FOOTER = 3;
-    private LFRecyclerViewListener mRecyclerViewListener;
+    private BaseRecyclerViewListener mRecyclerViewListener;
     private boolean mPullLoad;
     private TextView mHeaderTimeView;
     private boolean isNoDateShow = false;
-    private LFRecyclerViewScrollChange scrollerListener;//滑动监听
+    private BaseRecyclerViewScrollChange scrollerListener;//滑动监听
     private boolean isAutoLoadMore;
 
     /*添加头*/
@@ -447,7 +447,7 @@ public class BaseRecyclerView extends RecyclerView {
     }
 
 
-    public void setLFRecyclerViewListener(LFRecyclerViewListener l) {
+    public void setBaseRecyclerViewListener(BaseRecyclerViewListener l) {
         mRecyclerViewListener = l;
     }
 
@@ -486,7 +486,7 @@ public class BaseRecyclerView extends RecyclerView {
         }
     }
 
-    public interface LFRecyclerViewScrollChange {
+    public interface BaseRecyclerViewScrollChange {
         void onRecyclerViewScrollChange(View view, int i, int i1);
     }
 
@@ -495,7 +495,7 @@ public class BaseRecyclerView extends RecyclerView {
      *
      * @param listener jianting
      */
-    public void setScrollChangeListener(LFRecyclerViewScrollChange listener) {
+    public void setScrollChangeListener(BaseRecyclerViewScrollChange listener) {
         this.scrollerListener = listener;
     }
 
@@ -503,9 +503,8 @@ public class BaseRecyclerView extends RecyclerView {
     /**
      * implements this interface to get refresh/load more event.
      */
-    public interface LFRecyclerViewListener {
+    public interface BaseRecyclerViewListener {
         void onRefresh();
-
         void onLoadMore();
     }
 

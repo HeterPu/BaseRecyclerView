@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.huterpu.baserecyclerview.BaseAdapter;
+import com.huterpu.baserecyclerview.BaseRecyclerView;
 
 import java.util.List;
 
@@ -24,17 +25,15 @@ public class Main_Adapter extends BaseAdapter<String> {
   }
 
 
-
-
-        @Override
-  public   ViewGroup getPrototypeCell(ViewGroup parent, int viewType) {
+    @Override
+    public ViewGroup getPrototypeCell(BaseRecyclerView parent, int viewType) {
         return (ViewGroup) LayoutInflater.from(parent.getContext()).inflate(R.layout.item,parent,false);
     }
 
 
     @Override
-  public   void CellForItem(ViewGroup containerView, final int position) {
-        View  content = (View) containerView.findViewById(R.id.xxxx);
+    public void CellForItem(BaseRecyclerView parent, ViewGroup container, final int position) {
+        View  content = (View) container.findViewById(R.id.xxxx);
         content.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

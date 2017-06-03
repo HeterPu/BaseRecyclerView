@@ -46,8 +46,19 @@ import java.util.List;
     }
 
 
-  public   abstract void CellForItem(BaseRecyclerView parent,ViewGroup container, int position);
-  public   abstract ViewGroup getPrototypeCell(BaseRecyclerView parent,int viewType);
+    /**
+     * @param parent  Recycle视图自身
+     * @param container 容器视图
+     * @param position  当前的位置
+     */
+    public   abstract void CellForItem(BaseRecyclerView parent,ViewGroup container, int position);
+
+    /**
+     * @param parent  Recycle视图自身
+     * @param viewType 视图类型
+     * @return
+     */
+    public   abstract ViewGroup getPrototypeCell(BaseRecyclerView parent,int viewType);
 }
 
 

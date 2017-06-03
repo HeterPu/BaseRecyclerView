@@ -97,13 +97,13 @@ public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
                         int cellOriginSpacing = totalWidth / spanCount;
                         if (column == 0) {
                             outRect.left = mPadding.left;
-                            outRect.right = totalWidth / spanCount - mPadding.left;
+                            outRect.right = cellOriginSpacing - mPadding.left;
                         } else if (column == spanCount - 1) {
                             outRect.right = mPadding.right;
                             outRect.left = cellOriginSpacing - mPadding.right;
                         } else {
 
-                            outRect.left = spacing - (cellOriginSpacing - mPadding.left) + (column - 1) * (cellOriginSpacing - spacing);
+                            outRect.left = spacing - (cellOriginSpacing - mPadding.left) - (column - 1) * (cellOriginSpacing - spacing);
                             outRect.right = (cellOriginSpacing - mPadding.left) + (column) * (cellOriginSpacing - spacing);
                         }
 
@@ -259,7 +259,7 @@ public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
                                 outRect.top = cellOriginSpacing - mPadding.bottom;
                             } else {
 
-                                outRect.top = spacing - (cellOriginSpacing - mPadding.top) + (column - 1) * (cellOriginSpacing - spacing);
+                                outRect.top = spacing - (cellOriginSpacing - mPadding.top) - (column - 1) * (cellOriginSpacing - spacing);
                                 outRect.bottom = (cellOriginSpacing - mPadding.top) + (column) * (cellOriginSpacing - spacing);
                             }
 

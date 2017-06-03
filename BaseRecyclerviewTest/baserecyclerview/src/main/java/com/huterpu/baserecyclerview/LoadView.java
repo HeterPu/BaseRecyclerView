@@ -6,6 +6,8 @@ import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.util.AttributeSet;
 import android.widget.ImageView;
+import android.widget.ZoomButton;
+
 import java.lang.ref.SoftReference;
 
 /**
@@ -60,6 +62,7 @@ public class LoadView extends ImageView {
         height = bitmap.getHeight() / 2;
     }
 
+
     static class MyRunable implements Runnable {
         private boolean flag;
         private SoftReference<LoadView> loadingViewSoftReference;
@@ -85,8 +88,6 @@ public class LoadView extends ImageView {
                 }
             }
         }
-
-
 
 
         public void stopload() {
