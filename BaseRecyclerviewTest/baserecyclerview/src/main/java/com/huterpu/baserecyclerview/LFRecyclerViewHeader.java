@@ -236,6 +236,12 @@ public class LFRecyclerViewHeader extends LinearLayout {
         lfrecyclerview_header_time.setText(updateAtValue);
     }
 
+
+    public void setHeaderBackground(int i){
+        if (mContainer != null)mContainer.setBackgroundColor(i);
+    }
+
+
     public TextView getmHintTextView() {
         return mHintTextView;
     }

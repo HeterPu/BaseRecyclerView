@@ -30,6 +30,7 @@ public class LFRecyclerViewFooter extends LinearLayout {
     private TextView mHintView;
     private RelativeLayout lfrecyclerview_footer_state;
     private LoadView lfrecyclerview_footer_loadview;
+    private LinearLayout mContainer;
 
     public LFRecyclerViewFooter(Context context) {
         super(context);
@@ -122,6 +123,7 @@ public class LFRecyclerViewFooter extends LinearLayout {
         mProgressBar = moreView.findViewById(R.id.lfrecyclerview_footer_progressbar);
         mHintView = (TextView) moreView.findViewById(R.id.lfrecyclerview_footer_hint_textview);
         lfrecyclerview_footer_loadview = (LoadView) moreView.findViewById(R.id.lfrecyclerview_footer_loadview);
+        mContainer = moreView;
     }
 
     public TextView getmHintView() {
@@ -142,5 +144,9 @@ public class LFRecyclerViewFooter extends LinearLayout {
 
     }
 
+
+    public void setFooterBackground(int i){
+        if (mContainer != null)mContainer.setBackgroundColor(i);
+    }
 
 }

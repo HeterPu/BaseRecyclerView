@@ -190,6 +190,7 @@ public class BaseRecyclerView extends RecyclerView {
     }
 
 
+
     public void stopRefresh(boolean isSuccess) {
 //        lfAdapter.notifyDataSetChanged();
         if (mPullRefreshing) {
@@ -234,6 +235,16 @@ public class BaseRecyclerView extends RecyclerView {
             }
         }
         recyclerViewFooter.setBottomMargin(height);
+    }
+
+
+    public void setRefreshHeaderAndFooterBackground(Integer color1,Integer color2){
+        if ((recyclerViewHeader != null)&&(color1 != null)){
+            recyclerViewHeader.setHeaderBackground(color1);
+        }
+        if ((recyclerViewFooter != null)&&(color2 != null)){
+            recyclerViewFooter.setFooterBackground(color2);
+        }
     }
 
     private void resetFooterHeight() {
