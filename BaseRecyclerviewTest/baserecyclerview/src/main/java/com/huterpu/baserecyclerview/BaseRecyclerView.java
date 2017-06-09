@@ -302,7 +302,7 @@ public class BaseRecyclerView extends RecyclerView {
         return super.onTouchEvent(ev);
     }
 
-    private void startLoadMore() {
+    public void startLoadMore() {
         if (mRecyclerViewListener != null) {
             recyclerViewFooter.setState(LFRecyclerViewFooter.STATE_LOADING);
             mRecyclerViewListener.onLoadMore();
