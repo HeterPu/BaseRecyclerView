@@ -302,7 +302,7 @@ public class BaseRecyclerView extends RecyclerView {
         return super.onTouchEvent(ev);
     }
 
-    public void startLoadMore() {
+    private void startLoadMore() {
         if (mRecyclerViewListener != null) {
             recyclerViewFooter.setState(LFRecyclerViewFooter.STATE_LOADING);
             mRecyclerViewListener.onLoadMore();
@@ -320,6 +320,10 @@ public class BaseRecyclerView extends RecyclerView {
             mPullLoading = false;
             recyclerViewFooter.setState(LFRecyclerViewFooter.STATE_NORMAL);
             resetFooterHeight();
+        }
+        else
+        {
+            recyclerViewFooter.setState(LFRecyclerViewFooter.STATE_NORMAL);
         }
     }
 
