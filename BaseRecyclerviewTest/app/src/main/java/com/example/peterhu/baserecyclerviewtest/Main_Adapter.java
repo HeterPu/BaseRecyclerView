@@ -32,7 +32,7 @@ public class Main_Adapter extends BaseAdapter<String> {
 
 
     @Override
-    public void CellForItem(BaseRecyclerView parent, ViewGroup container, final int position) {
+    public void cellForItem(BaseRecyclerView parent, ViewGroup container, final int position) {
         View  content = (View) container.findViewById(R.id.xxxx);
         content.setOnClickListener(new View.OnClickListener() {
             @Override

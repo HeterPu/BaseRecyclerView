@@ -29,7 +29,7 @@ import java.util.List;
 
     @Override
     public void onBindViewHolder(MasonryView holder, int position) {
-          CellForItem(mContainerView,holder.container,position);
+          cellForItem(mContainerView,holder.container,position);
     }
 
     @Override
@@ -51,7 +51,7 @@ import java.util.List;
      * @param container 容器视图
      * @param position  当前的位置
      */
-    public   abstract void CellForItem(BaseRecyclerView parent,ViewGroup container, int position);
+    public   abstract void cellForItem(BaseRecyclerView parent,ViewGroup container, int position);
 
     /**
      * @param parent  Recycle视图自身
