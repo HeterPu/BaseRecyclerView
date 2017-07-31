@@ -345,6 +345,9 @@ public class BaseRecyclerView extends RecyclerView {
             mPullLoading = false;
             recyclerViewFooter.setState(LFRecyclerViewFooter.STATE_LOADOVER);
             resetFooterHeight();
+        }else
+        {
+            recyclerViewFooter.setState(LFRecyclerViewFooter.STATE_LOADOVER);
         }
     }
 
@@ -442,7 +445,6 @@ public class BaseRecyclerView extends RecyclerView {
         if (!isLoadMore) {
             recyclerViewFooter.hide();
         }
-
     }
 
     public void setRefresh(boolean b) {
