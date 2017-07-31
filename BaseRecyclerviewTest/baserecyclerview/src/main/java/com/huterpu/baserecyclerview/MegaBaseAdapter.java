@@ -39,7 +39,7 @@ public class MegaBaseAdapter<T> extends BaseAdapter<T> {
     }
 
     @Override
-    public void CellForItem(BaseRecyclerView parent, ViewGroup container, int position) {
+    public void cellForItem(BaseRecyclerView parent, ViewGroup container, int position) {
       if (mDelegate != null) mDelegate.cellForItem( parent,container,position);
     }
 
