@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity{
                     list.add(list.size(), "leefeng.me" + "==onLoadMore");
                     list.add(list.size(), "leefeng.me" + "==onLoadMore");
                     adapter.notifyDataSetChanged();
-                    recycleview.stopLoadMore();
+//                    recycleview.stopLoadMore();
                     Log.e("","");
                 }
             });

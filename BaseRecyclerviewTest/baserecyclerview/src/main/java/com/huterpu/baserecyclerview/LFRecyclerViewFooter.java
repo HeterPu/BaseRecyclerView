@@ -139,6 +139,7 @@ public class LFRecyclerViewFooter extends LinearLayout {
             public void onClick(View v) {
                 if (canClickFlag){
                     if (delegate != null){
+                        loading();
                         delegate.onClick();
                     }
                 }
