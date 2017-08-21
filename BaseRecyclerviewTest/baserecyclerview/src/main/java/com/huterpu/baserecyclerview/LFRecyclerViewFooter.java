@@ -137,7 +137,11 @@ public class LFRecyclerViewFooter extends LinearLayout {
         mHintView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if (canClickFlag){
+                    if (delegate != null){
+                        delegate.onClick();
+                    }
+                }
             }
         });
     }
