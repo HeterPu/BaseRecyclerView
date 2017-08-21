@@ -28,7 +28,8 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:orientation="horizontal"
-            android:visibility="invisible">
+            android:visibility="invisible"
+            >
 
             <com.huterpu.baserecyclerview.LoadView
                 android:id="@+id/lfrecyclerview_footer_loadview"
@@ -45,10 +46,11 @@
 
         <TextView
             android:id="@+id/lfrecyclerview_footer_hint_textview"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="@string/lfrecyclerview_footer_hint_normal"
+            android:gravity="center"
             />
     </RelativeLayout>
 </LinearLayout>

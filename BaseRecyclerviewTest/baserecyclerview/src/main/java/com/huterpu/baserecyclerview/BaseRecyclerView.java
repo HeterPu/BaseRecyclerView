@@ -361,6 +361,12 @@ public class BaseRecyclerView extends RecyclerView {
         mScroller = new Scroller(context, new DecelerateInterpolator());
         recyclerViewHeader = new LFRecyclerViewHeader(context);
         recyclerViewFooter = new LFRecyclerViewFooter(context);
+        recyclerViewFooter.setDelegate(new LFRecyclerViewFooter.OnloadMoreClickDelegate() {
+            @Override
+            public void onClick() {
+                if (mRecyclerViewListener != null)mRecyclerViewListener.onLoadMore();
+            }
+        });
         mHeaderTimeView = (TextView) recyclerViewHeader
                 .findViewById(R.id.lfrecyclerview_header_time);
         mHeaderViewContent = (RelativeLayout) recyclerViewHeader

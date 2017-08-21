@@ -31,6 +31,8 @@ public class LFRecyclerViewFooter extends LinearLayout {
     private RelativeLayout lfrecyclerview_footer_state;
     private LoadView lfrecyclerview_footer_loadview;
     private LinearLayout mContainer;
+    private OnloadMoreClickDelegate delegate;
+    private boolean canClickFlag;
 
     public LFRecyclerViewFooter(Context context) {
         super(context);
@@ -40,6 +42,11 @@ public class LFRecyclerViewFooter extends LinearLayout {
     public LFRecyclerViewFooter(Context context, AttributeSet attrs) {
         super(context, attrs);
         initView(context);
+    }
+
+
+    public void setDelegate(OnloadMoreClickDelegate delegate) {
+        this.delegate = delegate;
     }
 
     public int getmState(){
@@ -55,16 +62,19 @@ public class LFRecyclerViewFooter extends LinearLayout {
         if (state == STATE_READY) {
             mHintView.setVisibility(View.VISIBLE);
             mHintView.setText(R.string.lfrecyclerview_footer_hint_ready);
+            canClickFlag = false;
         } else if (state == STATE_LOADING) {
             mProgressBar.setVisibility(View.VISIBLE);
         } else if (state == STATE_LOADOVER) {
             mHintView.setVisibility(View.VISIBLE);
             mHintView.setText(R.string.lfrecyclerview_footer_hint_load_over);
+            canClickFlag = false;
         }
         else
         {
             mHintView.setVisibility(View.VISIBLE);
             mHintView.setText(R.string.lfrecyclerview_footer_hint_normal);
+            canClickFlag = true;
         }
     }
 
@@ -124,6 +134,12 @@ public class LFRecyclerViewFooter extends LinearLayout {
         mHintView = (TextView) moreView.findViewById(R.id.lfrecyclerview_footer_hint_textview);
         lfrecyclerview_footer_loadview = (LoadView) moreView.findViewById(R.id.lfrecyclerview_footer_loadview);
         mContainer = moreView;
+        mHintView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     public TextView getmHintView() {
@@ -147,6 +163,11 @@ public class LFRecyclerViewFooter extends LinearLayout {
 
     public void setFooterBackground(int i){
         if (mContainer != null)mContainer.setBackgroundColor(i);
+    }
+
+
+    interface OnloadMoreClickDelegate{
+        void onClick();
     }
 
 }
